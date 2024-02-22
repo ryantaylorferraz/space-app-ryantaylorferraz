@@ -43,10 +43,8 @@ flex-grow: 1;
 `
 
 const App = () => {
-  // const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos)
   const [filtro, setFiltro] = useState('')
   const [tag, setTag] = useState(0)
-  console.log(!tag)
   
   const [fotoSelecionada, setFotoSelecionada] = useState(null) 
 
@@ -67,22 +65,22 @@ const App = () => {
         return filtroPorTag && filtroPorTitulo
       })
 
-  const aoAternarFavorito = (foto) => {
+      const aoAternarFavorito = (foto) => {
     
-    if(foto.id === fotoSelecionada?.id){
-      setFotoSelecionada({
-        ...fotoSelecionada,
-        favorita: !fotoSelecionada.favorita
-      })
-    } 
-      const fotosAtualizada = fotosComNome.map(fotoDaGaleria => {
-      return {
-        ...fotoDaGaleria,
-        favorita: fotoDaGaleria.id === foto.id ? !foto.favorita : foto.favorita
+        if(foto.id === fotoSelecionada?.id){
+          setFotoSelecionada({
+            ...fotoSelecionada,
+            favorita: !fotoSelecionada.favorita
+          })
+        } 
+           setListFotos(fotosComNome.map(fotoDaGaleria => {
+          return {
+            ...fotoDaGaleria,
+            favorita: fotoDaGaleria.id === foto.id ? !foto.favorita : fotoDaGaleria.favorita
+          }
+        }))
+    
       }
-    })
-    console.log(fotosAtualizada)
-  }
 
   return (
     <FundoGradiente>
@@ -97,7 +95,7 @@ const App = () => {
           <Banner texto={"A galeria mais completa de fotos do espaço!"} />
           <Galeria aoFotoSelecionada={setFotoSelecionada}
           aoAternarFavorito={aoAternarFavorito}
-           fotosComNome={fotosComNome}
+           fotosComNome={fotosComNome} tag={tag}
           setTag={setTag} filtro={filtro} fotosFiltradas={fotosFiltradas} />
           </ConteudoGaleria>
         </MainContainer>

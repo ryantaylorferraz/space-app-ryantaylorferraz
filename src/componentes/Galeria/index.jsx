@@ -30,6 +30,7 @@ export const Galeria = ({
   fotosDaGaleria,
   setFotosDaGaleria,
   todasAsFotos,
+  tag,
   setTag,
   aoFotoSelecionada,
   aoAternarFavorito,
@@ -42,7 +43,7 @@ export const Galeria = ({
       <GaleriaContainer>
         <SecaoFluida>
           <Titulo>Navegue pela galeria</Titulo>
-          {filtro.length > 0 ? (
+          {filtro.length > 0 || tag > 0 ? (
             <ul>
               {fotosFiltradas?.map((foto) => (
                 <Imagem
