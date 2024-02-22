@@ -61,15 +61,12 @@ const App = () => {
   useEffect(() => {
       const fotosFiltradas = fotosComNome.filter(foto => {
         const filtroPorTag = !tag || foto.tagId === tag;
-        const filtroPorTitulo = !filtro || foto.titulo.toLowerCase().startsWith(filtro.toLowerCase())
+        const filtroPorTitulo = !filtro || foto.titulo.toLowerCase().includes(filtro.toLowerCase())
         return filtroPorTag && filtroPorTitulo
       })
 
       setFotosDaGaleria(fotosFiltradas)
-      
     }, [])
-
-    console.log(fotosDaGaleria)
 
   
   const aoAternarFavorito = (foto) => {

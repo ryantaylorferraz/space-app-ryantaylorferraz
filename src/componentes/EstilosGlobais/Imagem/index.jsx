@@ -64,7 +64,7 @@ export const Imagem = ({foto, expandida = false, aoZoomSolicitado, aoAternarFavo
   return (
     <Figure $expandida={expandida} id={`foto-${foto.id}`}>
         <img src={foto.path} alt={foto.alt} />
-        <BotaoEstilizado>{foto.nome}</BotaoEstilizado>
+        {!expandida &&<BotaoEstilizado>{foto.nome}</BotaoEstilizado>}
         <figcaption>
             <h3>{foto.titulo}</h3>
             <Rodape>
