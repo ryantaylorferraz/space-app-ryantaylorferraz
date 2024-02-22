@@ -58,7 +58,6 @@ const App = () => {
     }
   });  
   
-
       const fotosFiltradas = fotosComNome.filter(foto => {
         const filtroPorTag = !tag || foto.tagId === tag;
         const filtroPorTitulo = !filtro || foto.titulo.toLowerCase().includes(filtro.toLowerCase())
