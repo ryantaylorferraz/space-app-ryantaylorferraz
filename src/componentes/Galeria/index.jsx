@@ -8,41 +8,67 @@ import { Imagem } from "../EstilosGlobais/Imagem";
 
 // import fotos from "../../fotos.json"
 
-
 const GaleriaContainer = styled.div`
-display: flex;
-gap: 1.5rem;
-`
+  display: flex;
+  gap: 1.5rem;
+`;
 
 const SecaoFluida = styled.section`
-flex-grow: 1;
-margin-bottom: 1rem;
+  flex-grow: 1;
+  margin-bottom: 1rem;
 
-ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 25px;
-}
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+  }
+`;
 
-`
-
-export const Galeria = ({fotosDaGaleria, setFotosDaGaleria, todasAsFotos, setTag, aoFotoSelecionada, aoAternarFavorito}) => {
-
+export const Galeria = ({
+  filtro,
+  fotosFiltradas,
+  fotosDaGaleria,
+  setFotosDaGaleria,
+  todasAsFotos,
+  setTag,
+  aoFotoSelecionada,
+  aoAternarFavorito,
+  fotosComNome,
+  iconeFavorita
+}) => {
   return (
     <>
-      <Tags setTag={setTag}/>
+      <Tags setTag={setTag} />
       <GaleriaContainer>
         <SecaoFluida>
           <Titulo>Navegue pela galeria</Titulo>
-          <ul>
-            {fotosDaGaleria?.map(foto => <Imagem aoZoomSolicitado={aoFotoSelecionada}
-            aoAternarFavorito={aoAternarFavorito}
-             foto={foto} key={foto.id}/>)}
-
-          </ul>
+          {filtro.length > 0 ? (
+            <ul>
+              {fotosFiltradas?.map((foto) => (
+                <Imagem
+                  aoZoomSolicitado={aoFotoSelecionada}
+                  aoAternarFavorito={aoAternarFavorito}
+                  foto={foto}
+                  key={foto.id}
+                  iconeFavorita={iconeFavorita}
+                />
+              ))}
+            </ul>
+          ) : (
+            <ul>
+              {fotosComNome?.map((foto) => (
+                <Imagem
+                  aoZoomSolicitado={aoFotoSelecionada}
+                  aoAternarFavorito={aoAternarFavorito}
+                  foto={foto}
+                  key={foto.id}
+                />
+              ))}
+            </ul>
+          )}
         </SecaoFluida>
         <Populares />
       </GaleriaContainer>
-    </> 
+    </>
   );
 };

@@ -9,7 +9,7 @@ import tags from "./componentes/Galeria/Tags/tags.json"
 
 import fotos from "./fotos.json"
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ModalZoom } from "./componentes/ModalZoom";
 import { Rodape } from "./componentes/Rodape";
 
@@ -43,14 +43,14 @@ flex-grow: 1;
 `
 
 const App = () => {
-  const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos)
+  // const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos)
   const [filtro, setFiltro] = useState('')
   const [tag, setTag] = useState(0)
+  console.log(!tag)
   
-  const [fotoSelecionada, setFotoSelecionada] = useState(null)
-  
+  const [fotoSelecionada, setFotoSelecionada] = useState(null) 
 
-  const fotosComNome = fotos.map(foto => {
+  let fotosComNome = fotos.map(foto => {
     const nomeCorrespondente = tags.find(item => item.id === foto.tagId)?.titulo;
     return {
       ...foto,
@@ -58,17 +58,17 @@ const App = () => {
     }
   });  
   
-  useEffect(() => {
+
       const fotosFiltradas = fotosComNome.filter(foto => {
         const filtroPorTag = !tag || foto.tagId === tag;
+        console.log(filtroPorTag)
         const filtroPorTitulo = !filtro || foto.titulo.toLowerCase().includes(filtro.toLowerCase())
+        console.log(filtroPorTitulo)
         return filtroPorTag && filtroPorTitulo
       })
+      console.log(fotosFiltradas)
 
-      setFotosDaGaleria(fotosFiltradas)
-    }, [])
 
-  
   const aoAternarFavorito = (foto) => {
     
     if(foto.id === fotoSelecionada?.id){
@@ -76,17 +76,18 @@ const App = () => {
         ...fotoSelecionada,
         favorita: !fotoSelecionada.favorita
       })
-    }
-    
-    setFotosDaGaleria(fotosDaGaleria.map(fotoDaGaleria => {
+    } 
+      const fotosAtualizada = fotosComNome.map(fotoDaGaleria => {
       return {
         ...fotoDaGaleria,
         favorita: fotoDaGaleria.id === foto.id ? !foto.favorita : fotoDaGaleria.favorita
       }
-    }))
-  }
+    })
+    fotosComNome = fotosAtualizada
+    console.log(fotosComNome)
+  } 
 
-  
+
   return (
     <FundoGradiente>
       
@@ -94,15 +95,14 @@ const App = () => {
       <AppContainer> 
         <Cabecalho  filtro={filtro} setFiltro={setFiltro}
          />
-         <h1>{fotosDaGaleria.forEach(item => <p key={item.id}>{item}</p>)}</h1>
         <MainContainer>
           <BarraLateral />
           <ConteudoGaleria>
           <Banner texto={"A galeria mais completa de fotos do espaço!"} />
           <Galeria aoFotoSelecionada={setFotoSelecionada}
           aoAternarFavorito={aoAternarFavorito}
-          fotosDaGaleria={fotosDaGaleria}
-          setTag={setTag} />
+           fotosComNome={fotosComNome}
+          setTag={setTag} filtro={filtro} fotosFiltradas={fotosFiltradas} />
           </ConteudoGaleria>
         </MainContainer>
       </AppContainer>

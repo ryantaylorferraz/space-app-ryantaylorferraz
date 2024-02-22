@@ -13,11 +13,11 @@ const HeaderEstilizado = styled.header`
 `
 
 
-export const Cabecalho = ({setFiltro}) => {
+export const Cabecalho = ({filtro, setFiltro}) => {
     return (
         <HeaderEstilizado>
             <img src="/imagens/logo.png" alt="" />
-            <InputHeader setFiltro={setFiltro}/>
+            <InputHeader filtro={filtro} setFiltro={setFiltro}/>
         </HeaderEstilizado>
     )
 }

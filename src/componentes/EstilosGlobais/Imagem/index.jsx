@@ -58,7 +58,6 @@ const Rodape = styled.footer`
 
 export const Imagem = ({foto, expandida = false, aoZoomSolicitado, aoAternarFavorito}) => {
 
-
     const iconeFavorita = foto.favorita ? '/icones/favorito-ativo.png' : '/icones/favorito.png'
 
   return (

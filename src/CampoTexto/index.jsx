@@ -30,10 +30,10 @@ top: 18px;
 color: #C98CF1;
 `
 
-export const InputHeader = ({setFiltro}) => {
+export const InputHeader = ({filtro, setFiltro}) => {
   return (
     <ContainerEstilizado>
-            <CampoTextoEstilizado placeholder='O que você procura?' type='text' onChange={(e) => setFiltro(e.target.value)}/>
+            <CampoTextoEstilizado placeholder='O que você procura?' type='text' value={filtro} onChange={(e) => setFiltro(e.target.value)}/>
             <IconeLupa>
             <IoSearchOutline size={32} />
             </IconeLupa>
