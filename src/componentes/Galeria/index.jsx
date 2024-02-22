@@ -26,7 +26,7 @@ ul {
 
 `
 
-export const Galeria = ({fotosDaGaleria, setFotosDaGaleria, setTag, aoFotoSelecionada, aoAternarFavorito}) => {
+export const Galeria = ({fotosDaGaleria, setFotosDaGaleria, todasAsFotos, setTag, aoFotoSelecionada, aoAternarFavorito}) => {
 
   return (
     <>

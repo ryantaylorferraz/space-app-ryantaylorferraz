@@ -46,42 +46,41 @@ const App = () => {
   const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos)
   const [filtro, setFiltro] = useState('')
   const [tag, setTag] = useState(0)
-
+  
   const [fotoSelecionada, setFotoSelecionada] = useState(null)
-
-  useEffect(() => {
-      const nomesJson = tags
-      const fotosComNome = fotos.map(foto => {
-        const nomeCorrespondente = nomesJson.find(item => item.id === foto.tagId)?.titulo;
-        return {
-          ...foto,
-          nome: nomeCorrespondente || ''
-        }
-      });
-      setFotosDaGaleria(fotosComNome)
-  }, [])
   
 
-
+  const fotosComNome = fotos.map(foto => {
+    const nomeCorrespondente = tags.find(item => item.id === foto.tagId)?.titulo;
+    return {
+      ...foto,
+      nome: nomeCorrespondente || ''
+    }
+  });  
+  
   useEffect(() => {
-    const fotosFiltradas = fotos.filter(foto => {
-      const filtroPorTag = !tag || foto.tagId === tag;
-      const filtroPorTitulo = !filtro || foto.titulo.toLowerCase().startsWith(filtro.toLowerCase())
-      console.log(filtroPorTitulo)
-      return filtroPorTag && filtroPorTitulo
-    })
-    setFotosDaGaleria(fotosFiltradas)
-  }, [filtro, tag])
+      const fotosFiltradas = fotosComNome.filter(foto => {
+        const filtroPorTag = !tag || foto.tagId === tag;
+        const filtroPorTitulo = !filtro || foto.titulo.toLowerCase().startsWith(filtro.toLowerCase())
+        return filtroPorTag && filtroPorTitulo
+      })
 
+      setFotosDaGaleria(fotosFiltradas)
+      
+    }, [])
+
+    console.log(fotosDaGaleria)
+
+  
   const aoAternarFavorito = (foto) => {
-
+    
     if(foto.id === fotoSelecionada?.id){
       setFotoSelecionada({
         ...fotoSelecionada,
         favorita: !fotoSelecionada.favorita
       })
     }
-
+    
     setFotosDaGaleria(fotosDaGaleria.map(fotoDaGaleria => {
       return {
         ...fotoDaGaleria,
@@ -90,6 +89,7 @@ const App = () => {
     }))
   }
 
+  
   return (
     <FundoGradiente>
       
@@ -104,7 +104,8 @@ const App = () => {
           <Banner texto={"A galeria mais completa de fotos do espaço!"} />
           <Galeria aoFotoSelecionada={setFotoSelecionada}
           aoAternarFavorito={aoAternarFavorito}
-           fotosDaGaleria={fotosDaGaleria} setTag={setTag} />
+          fotosDaGaleria={fotosDaGaleria}
+          setTag={setTag} />
           </ConteudoGaleria>
         </MainContainer>
       </AppContainer>
