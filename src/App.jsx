@@ -50,7 +50,9 @@ const App = () => {
   
   const [fotoSelecionada, setFotoSelecionada] = useState(null) 
 
-  let fotosComNome = fotos.map(foto => {
+  const [listFotos, setListFotos] = useState(fotos)
+
+  let fotosComNome = listFotos.map(foto => {
     const nomeCorrespondente = tags.find(item => item.id === foto.tagId)?.titulo;
     return {
       ...foto,
@@ -61,13 +63,9 @@ const App = () => {
 
       const fotosFiltradas = fotosComNome.filter(foto => {
         const filtroPorTag = !tag || foto.tagId === tag;
-        console.log(filtroPorTag)
         const filtroPorTitulo = !filtro || foto.titulo.toLowerCase().includes(filtro.toLowerCase())
-        console.log(filtroPorTitulo)
         return filtroPorTag && filtroPorTitulo
       })
-      console.log(fotosFiltradas)
-
 
   const aoAternarFavorito = (foto) => {
     
@@ -80,13 +78,11 @@ const App = () => {
       const fotosAtualizada = fotosComNome.map(fotoDaGaleria => {
       return {
         ...fotoDaGaleria,
-        favorita: fotoDaGaleria.id === foto.id ? !foto.favorita : fotoDaGaleria.favorita
+        favorita: fotoDaGaleria.id === foto.id ? !foto.favorita : foto.favorita
       }
     })
-    fotosComNome = fotosAtualizada
-    console.log(fotosComNome)
-  } 
-
+    console.log(fotosAtualizada)
+  }
 
   return (
     <FundoGradiente>
