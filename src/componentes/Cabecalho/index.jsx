@@ -2,8 +2,9 @@ import styled from "styled-components"
 import { InputHeader } from "../../CampoTexto"
 
 const HeaderEstilizado = styled.header`
-    padding: 60px 0;
+    padding: 60px 15px;
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     img {

@@ -4,12 +4,21 @@ import { ItemNavegacao } from './ItemNavegacao'
 
 const ListaEstilizada = styled.ul`
     width: 212px;
+    height: fit-content;
+
+`
+
+const AsideEstilizado = styled.aside`
+    height: fit-content;
+    @media(max-width: 890px){
+        display: none;
+    }
 
 `
 
 export const BarraLateral = () => {
   return (
-    <aside>
+    <AsideEstilizado>
         <nav>
             <ListaEstilizada>
                 <ItemNavegacao iconeAtivo="/icones/home-ativo.png" iconeInativo="/icones/home-inativo.png" ativo={true}>
@@ -30,6 +39,6 @@ export const BarraLateral = () => {
 
             </ListaEstilizada>
         </nav>
-    </aside>
+    </AsideEstilizado>
   )
 }

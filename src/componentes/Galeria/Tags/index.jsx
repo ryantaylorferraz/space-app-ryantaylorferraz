@@ -12,6 +12,10 @@ const TituloTags = styled.p`
     color: #D9D9D9;
     font-size: 24px;
     margin: 0;
+
+    @media(max-width: 1125px){
+        display: none;
+    }
 `
 const Tag = styled.button`
     font-size: 24px;
@@ -29,7 +33,7 @@ const Tag = styled.button`
 `
 const Div = styled.div`
     display: flex;
-    gap: 24px;
+    gap: clamp(0.3rem, -0.557rem + 2.286vw, 1.5rem);
     justify-content: end;
 `
 export const Tags = ({ setTag }) => {

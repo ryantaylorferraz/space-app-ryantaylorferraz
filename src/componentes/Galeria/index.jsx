@@ -17,6 +17,7 @@ const SecaoFluida = styled.section`
   flex-grow: 1;
   margin-bottom: 1rem;
 
+
   ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));

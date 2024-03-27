@@ -33,6 +33,7 @@ const AppContainer = styled.div`
 const MainContainer = styled.main`
   display: flex;
   gap: 1.5rem;
+  padding: 1.5rem;
 `;
 
 const ConteudoGaleria = styled.section`

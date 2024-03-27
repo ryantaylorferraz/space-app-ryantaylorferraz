@@ -14,7 +14,7 @@ background-color: transparent;
 padding: 12px 16px;
 height: 2.5rem;
 border: 2px solid #C98CF1;
-width: 566px;
+width: clamp(20rem, 9.018rem + 29.286vw, 35.375rem);
 color: #D9D9D9;
 font-weight: 400;
 font-size: 1.3rem;

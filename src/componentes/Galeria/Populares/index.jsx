@@ -8,6 +8,10 @@ display: flex;
 flex-direction: column;
 gap: .3rem;
 
+@media(max-width: 800px){
+  display: none;
+}
+
 ul {
   display: flex;
   flex-direction: column;

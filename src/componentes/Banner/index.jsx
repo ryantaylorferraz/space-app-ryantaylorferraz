@@ -6,12 +6,16 @@ background-image: url(../../assets/banner.png);
 background-repeat: no-repeat;
 background-size: cover;
 min-height: 328px;
-max-width: 100%;
+width: clamp(25rem, -4.286rem + 78.095vw, 66rem);
 display: flex;
 align-items: center;
 
 border-radius: 1.5rem;
 flex-grow: 1;
+
+@media(max-width: 890px){
+  width: 100%;
+}
 
 `
 
